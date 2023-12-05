@@ -87,8 +87,10 @@ public final class MusicGroupImpl implements MusicGroup {
         Map<Optional<String>, Double> albumDurationMap = songs.stream()
             .filter(s -> s.albumName.isPresent())
             .collect(Collectors.groupingBy(Song::getAlbumName, Collectors.summingDouble(Song::getDuration)));
-        //albumDurationMap.entrySet().stream().max((key, value) -> value.getValue());
-        return null;
+        
+        return albumDurationMap.entrySet().stream()
+            .max((e1, e2) -> e1.getValue() > e2.getValue() ? 1 : -1)
+            .get().getKey();
     }
 
     private static final class Song {
