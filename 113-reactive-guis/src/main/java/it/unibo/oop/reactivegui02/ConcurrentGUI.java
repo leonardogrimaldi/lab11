@@ -47,7 +47,7 @@ public final class ConcurrentGUI extends JFrame {
         /**
          * Counter direction: true = up, false = down
          */
-        private boolean direction = true;
+        private volatile boolean direction = true;
         private int counter;
 
         @Override
@@ -89,7 +89,6 @@ public final class ConcurrentGUI extends JFrame {
             * Referenced stop button with ConcurrentGUI.this.stop to differentiate from boolean stop field in Agent class
             */
             ConcurrentGUI.this.stop.setEnabled(false);
-        }
-        
+        }  
     }
 }
