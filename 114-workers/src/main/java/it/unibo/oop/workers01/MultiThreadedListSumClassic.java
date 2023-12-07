@@ -60,12 +60,11 @@ public final class MultiThreadedListSumClassic implements SumList {
         public long getResult() {
             return this.res;
         }
-
     }
 
     @Override
     public long sum(final List<Integer> list) {
-        final int size = list.size() % nthread + list.size() / nthread;
+        final int size = (list.size() % nthread == 0 ? 0 : 1) + list.size() / nthread;
         /*
          * Build a list of workers
          */
